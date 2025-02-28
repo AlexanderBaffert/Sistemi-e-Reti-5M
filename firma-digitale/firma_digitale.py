@@ -9,8 +9,10 @@ import sys
 import json
 
 #=====================================================================#
+
+#=====================================================================#
 # Variable declaration
-plain_text = str(input("Enter the text to sign: "))
+plain_text = str(input("Enter a text: "))
 
 print(termcolor.colored("#=====================================================================#", "cyan"))
 print(termcolor.colored("Plain text:", "cyan"))
@@ -30,12 +32,14 @@ print("")
 print(termcolor.colored("#=====================================================================#", "cyan"))
 
 #=====================================================================#
+
+#=====================================================================#
 # Check if key files exist
 
 print("")
 
 print(termcolor.colored("Verify keys, please wait", "magenta"), end="")
-for _ in range(5):
+for _ in range(3):
     sys.stdout.write(".")
     sys.stdout.flush()
     time.sleep(1)
@@ -73,8 +77,11 @@ else:
     print(termcolor.colored("Keys generated and saved in files.", "yellow"))
 
 #=====================================================================#
-cipher = rsa.encrypt(plain_text, key_pair["public"], key_pair["modulus"])
-decrypted_message = rsa.decrypt(cipher, key_pair["private"], key_pair["modulus"])
+
+#=====================================================================#
+# Encrypt and decrypt message
+cipher = rsa.encrypt(hash_value, key_pair["private"], key_pair["modulus"])
+decrypted_message = rsa.decrypt(cipher, key_pair["public"], key_pair["modulus"])
 
 print("")
 
